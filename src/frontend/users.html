@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户列表 - 校园网行为分析系统</title>
+    <link rel="stylesheet" href="css/campus.css">
+    <script src="js/api.js"></script>
+</head>
+<body>
+<!-- 导航栏 -->
+<div class="daohang">
+    <ul>
+        <li><a href="dashboard.html">首页</a></li>
+        <li><a href="analysis.html">多维度分析</a></li>
+        <li><a href="users.html" class="active">用户列表</a></li>
+        <li><a href="warning.html">预警管理</a></li>
+        <li><a href="profile.html">用户画像</a></li>
+    </ul>
+</div>
+
+<!-- 主容器 -->
+<div class="main-concent">
+    <!-- 搜索和过滤 -->
+    <div class="card">
+        <div class="card-header">🔍 用户搜索与过滤</div>
+        <div class="card-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
+                <input type="text" id="searchInput" placeholder="学号或姓名">
+                <input type="text" id="collegeInput" placeholder="学院">
+                <input type="text" id="majorInput" placeholder="专业">
+                <button class="btn btn-primary" onclick="loadUsers()">搜索</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户表格 -->
+    <div class="card mt-30">
+        <div class="card-header">👥 用户列表</div>
+        <div class="card-body">
+            <div style="overflow-x: auto;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>学院</th>
+                        <th>专业</th>
+                        <th>所在群体</th>
+                        <th>健康度</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="usersTable">
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 30px;">
+                            <div class="spinner"></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 分页 -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-primary btn-small" onclick="prev()">上一页</button>
+                <span style="margin: 0 10px;" id="pageInfo">第 1 页</span>
+                <button class="btn btn-primary btn-small" onclick="next()">下一页</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 页脚 -->
+<div class="footer">
+    <p>© 2026 校园网行为分析系统 - 用户列表</p>
+</div>
+
+<script src="js/users.js"></script>
+</body>
+</html>

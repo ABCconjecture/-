@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户画像 - 校园网行为分析系统</title>
+    <link rel="stylesheet" href="css/campus.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="js/api.js"></script>
+</head>
+<body>
+<!-- 导航栏 -->
+<div class="daohang">
+    <ul>
+        <li><a href="dashboard.html">首页</a></li>
+        <li><a href="analysis.html">多维度分析</a></li>
+        <li><a href="users.html">用户列表</a></li>
+        <li><a href="warning.html">预警管理</a></li>
+        <li><a href="profile.html" class="active">用户画像</a></li>
+    </ul>
+</div>
+
+<!-- 主容器 -->
+<div class="main-concent">
+    <!-- 聚类分布 -->
+    <div class="card">
+        <div class="card-header">📊 用户聚类分布</div>
+        <div class="card-body">
+            <div id="clusterDistributionChart" style="height: 300px;"></div>
+            <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                <button class="btn btn-primary btn-block" onclick="loadClusterProfile(0)">群体 1</button>
+                <button class="btn btn-primary btn-block" onclick="loadClusterProfile(1)">群体 2</button>
+                <button class="btn btn-primary btn-block" onclick="loadClusterProfile(2)">群体 3</button>
+                <button class="btn btn-primary btn-block" onclick="loadClusterProfile(3)">群体 4</button>
+                <button class="btn btn-primary btn-block" onclick="loadClusterProfile(4)">群体 5</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 聚类详情 -->
+    <div class="card mt-30">
+        <div class="card-header">🎯 聚类用户详情</div>
+        <div class="card-body">
+            <div style="overflow-x: auto;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>学院</th>
+                        <th>聚类ID</th>
+                        <th>用户标签</th>
+                        <th>健康度</th>
+                    </tr>
+                    </thead>
+                    <tbody id="clusterUsersTable">
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--text-light);">
+                            请选择聚类群体
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 页脚 -->
+<div class="footer">
+    <p>© 2026 校园网行为分析系统 - 用户画像</p>
+</div>
+
+<script src="js/profile.js"></script>
+</body>
+</html>

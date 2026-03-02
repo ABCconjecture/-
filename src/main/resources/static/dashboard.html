@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据看板 - 校园网行为分析系统</title>
+    <link rel="stylesheet" href="css/campus.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="js/api.js"></script>
+</head>
+<body>
+<div class="daohang">
+    <ul>
+        <li><a href="dashboard.html" class="active">首页</a></li>
+        <li><a href="analysis.html">多维度分析</a></li>
+        <li><a href="users.html">用户列表</a></li>
+        <li><a href="warning.html">预警管理</a></li>
+        <li><a href="profile.html">用户画像</a></li>
+    </ul>
+</div>
+
+<div class="main-concent">
+    <div class="card">
+        <div class="card-header">📊 校园网行为分析系统</div>
+        <div class="card-body">
+            <h2>欢迎使用系统</h2>
+            <p>实时监控校园用户行为，多维度分析学生状态，及时预警异常情况。</p>
+        </div>
+    </div>
+
+    <div class="card mt-30">
+        <div class="card-header">系统整体统计</div>
+        <div class="card-body">
+            <div class="analysis-grid">
+                <div class="metric-card">
+                    <div class="metric-label">总用户数</div>
+                    <div class="metric-value" id="totalUsers">0</div>
+                    <div class="health-indicator"><div class="health-bar" style="width: 80%;"></div></div>
+                </div>
+                <div class="metric-card pink">
+                    <div class="metric-label">未处理预警</div>
+                    <div class="metric-value" id="unhandledWarnings">0</div>
+                    <div class="metric-trend">📈 需要关注</div>
+                </div>
+                <div class="metric-card danger">
+                    <div class="metric-label">高风险用户</div>
+                    <div class="metric-value" id="highRiskCount">0</div>
+                    <div class="metric-trend">⚠️ 需要干预</div>
+                </div>
+                <div class="metric-card info">
+                    <div class="metric-label">平均健康度</div>
+                    <div class="metric-value" id="avgHealth">0</div>
+                    <div class="metric-unit">/100</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-30">
+        <div class="card-header">最近7天健康度趋势</div>
+        <div class="card-body"><div id="trendChart" style="height: 300px;"></div></div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+        <div class="card">
+            <div class="card-header">预警类型分布</div>
+            <div class="card-body"><div id="warningTypeChart" style="height: 300px;"></div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">聚类用户分布</div>
+            <div class="card-body"><div id="clusterChart" style="height: 300px;"></div></div>
+        </div>
+    </div>
+
+    <div class="card mt-30">
+        <div class="card-header">快速操作</div>
+        <div class="card-body">
+            <div class="analysis-grid">
+                <button class="btn btn-primary btn-block" onclick="api.triggerAnalysisUpdate().then(() => alert('多维度分析任务已执行')).catch(e => alert('执行失败:' + e.message))">🔄 触发多维度分析</button>
+                <button class="btn btn-success btn-block" onclick="api.triggerProfileUpdate().then(() => alert('用户画像更新任务已执行')).catch(e => alert('执行失败:' + e.message))">👤 触发用户画像更新</button>
+                <button class="btn btn-warning btn-block" onclick="api.triggerWarningCheck().then(() => alert('预警检查任务已执行')).catch(e => alert('执行失败:' + e.message))">⚠️ 触发预警检查</button>
+                <button class="btn btn-info btn-block" onclick="location.href='analysis.html'">📊 查看多维度分析</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 校园网行为分析系统 - 数据看板</p>
+</div>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
